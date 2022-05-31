@@ -1,0 +1,154 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>[ mini-project ] Compose a piece of music using analog synthesizer techniques</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m15443</md:content-id>
+  <md:title>[ mini-project ] Compose a piece of music using analog synthesizer techniques</md:title>
+  <md:abstract>In this project you will design sounds in LabVIEW. You will create two subVIs: one to implement an ADSR-style envelope generator and the other to create a multi-voice sound source. You will then create a top-level application VI to render a simple musical composition as an audio file.</md:abstract>
+  <md:uuid>9b08cb81-118c-4b97-993a-6f6e7715f159</md:uuid>
+</metadata>
+
+<content>
+
+<table id="labview_banner" frame="none" summary=""><tgroup cols="2">
+<colspec rowsep="0" colsep="0"/> <colspec colwidth="6in" rowsep="0" colsep="0"/>
+<tbody>
+  <row>
+    <entry morerows="3"><media id="idm23328" alt=""><image src="../../media/LabVIEWbanner.png" mime-type="image/png"/></media></entry>
+    <entry> This module refers to LabVIEW, a software development environment that features a graphical programming language.
+       Please see the <link document="m15428">LabVIEW QuickStart Guide</link> module for tutorials and documentation that will help you:</entry>
+  </row>
+  <row> <entry>• Apply LabVIEW to Audio Signal Processing </entry> </row>
+  <row> <entry>• Get started with LabVIEW</entry> </row>
+  <row> <entry>• Obtain a fully-functional evaluation edition of LabVIEW</entry> </row>
+</tbody>
+</tgroup>
+</table>
+
+
+<section id="sec1">
+<title>Objective</title>
+
+<para id="par2">This project will give you the opportunity to begin designing sounds in LabVIEW. You will create two subVIs: one to implement an ADSR-style envelope generator and the other to create a multi-voice sound source. You will then create a top-level application VI to render a simple musical composition as an audio file.</para>
+
+</section>
+
+<section id="sec3">
+<title>Prerequisite Modules</title>
+
+<para id="par4">If you have not done so already, please study the prerequisite module <link document="m15442">Analog Synthesis Modules</link>. If you are relatively new to LabVIEW, consider taking the course <link document="col10440">LabVIEW Techniques for Audio Signal Processing</link>, which provides the foundation you need to complete this mini-project activity, including working with arrays, creating subVIs, playing an array to the soundcard, and saving an array as a .wav sound file.</para>
+
+</section>
+
+<section id="sec5">
+<title>Deliverables</title>
+
+<list id="list6" list-type="bulleted">
+
+<item> All LabVIEW code that you develop (block diagrams and front panels) </item>
+<item> All generated sounds in .wav format </item>
+<item> Any plots or diagrams requested </item>
+<item> Summary write-up of your results </item>
+
+</list>
+
+</section>
+
+<section id="sec7">
+<title>Part 1: ADSR Envelope</title>
+
+<para id="par8">Create the subVI <term>ADSR.vi</term> to generate the ADSR-style envelope specified in 
+<link target-id="img-adsr-spec"/>; recall that 
+ADSR stands for "Attack Decay Sustain Release."</para>
+
+<figure id="img-adsr-spec">
+<media id="idm1309472" alt=""><image src="../../media/asyn_MP-compose-adsr-spec.png" mime-type="image/png"/></media>
+<caption>
+   Specifications for the ADSR-style envelope
+</caption>
+</figure>
+
+<para id="par10">The envelope shape is defined over a normalized time interval of 0 to 1; the envelope  stretches or compresses to match the actual duration requested. The three time intervals are likewise expressed in normalized units, so an attack duration (tA) of 0.2 indicates that the attack time is 20% of the entire envelope duration. The envelope values range from 0 dB (full sound intensity) to -40 dB (close to silence). Once you have defined the envelope shape in terms of straight-line segments, you can create the envelope amplitude waveform by undoing the decibels operation; recall that an amplitude "A" expressed in dB is 20 log10(A).</para>
+
+<para id="par11">The subVI requires the following controls as input parameters (units specified in brackets):</para>
+
+<list id="list12" list-type="enumerated">
+
+<item> <term>duration [s]</term> - total duration of envelope </item>
+<item> <term>fs [Hz]</term> - system-wide sampling frequency </item>
+<item> <term>t values</term> - three-value array containing attack (A) interval, decay (D) interval, and release (R) interval. All three values are in the range 0 to 1, so the intervals are to be treated as fractions of the total duration of the envelope. For example, A=0.3 indicates the attack interval is 30% of the envelope's duration. </item>
+<item> <term>e values</term> - two-value array containing the envelope value at the beginning of the sustain interval (eS in the diagram above) and the envelope value at the beginning of the release interval (eR). </item>
+
+</list>
+
+<para id="par13">The subVI requires the single indicator (output) <term>envelope</term>, an array with values in the range 0 to 1.</para>
+
+<para id="par14">Show that your ADSR VI functions properly by plotting the envelope for at least two distinct cases. Plot both the dB form of the envelope as well as its non-dB form.</para>
+
+<para id="par15">The following screencast video provides coding tips and other suggestions to help you develop your subVI.</para>
+
+<figure id="video16"><title><link url="https://youtu.be/ByMu89OcgHI" window="new">https://youtu.be/ByMu89OcgHI</link> (8:48)</title><media id="eip-idm446780512" display="block" alt="Front panel and block diagram of 'ADSR.vi'">
+<video mime-type="video/mpeg" src="https://www.youtube.com/embed/ByMu89OcgHI?rel=0" autoplay="false" width="640" height="460"/>
+ </media>
+
+<caption>[video] Coding tips and suggestions for <term>ADSR.vi</term>
+</caption></figure></section>
+
+<section id="sec17">
+<title>Part 2: Sound Generator</title>
+
+<para id="par18">Make a subVI called <term>SoundGen.vi</term> that combines a signal source with the ADSR envelope generator. Use a <term>case structure</term> with an <term>enumerated data type</term> control that allows you to choose one of several different "voices" or "instruments." The case structure then defines the ADSR input parameters to choose the type of signal source (or noise source for a percussive instrument).</para>
+
+<para id="par19">The subVI requires the following controls as input parameters (units specified in brackets):</para>
+
+<list id="list20" list-type="enumerated">
+
+<item> <term>duration [s]</term> - total duration of note </item>
+<item> <term>fs [Hz]</term> - system-wide sampling frequency </item>
+<item> <term>fref [Hz]</term> - reference frequency </item>
+<item> <term>note </term> - note frequency as described by an integer value that denotes the number of semitone intervals from the reference frequency; <term>note </term> can be a negative, zero, or positive value </item>
+<item> <term>instrument</term> - enumerated data type with values of your choice; your SoundGen.vi should have at least three different tone-type sounds and at least two different percussive sounds. Use a variety of envelope shapes. </item>
+
+</list>
+
+<para id="par21">If the discussion in Item 4 for the <term>note </term> control seems mysterious, review the module [INSERT NAME AND MODULE LINK]
+ to learn how to calculate the frequency of a semitone interval using <term>equal temperament</term>.</para>
+
+<para id="par22">Show that your sound generator VI functions properly by developing a top-level VI that plays a chromatic scale. Vary the duration of the notes.
+ Plot the waveform to ensure that the envelope shape makes sense. Save your generated sound to a .wav file to be included with your deliverables.</para>
+
+<para id="par23">The screencast video of <link target-id="video-part2"/> offers coding tips and other suggestions to help you develop your subVI.</para>
+
+<figure id="video-part2"><title><link url="https://youtu.be/7B_1uUV37x8" window="new">https://youtu.be/7B_1uUV37x8</link> (17:07)</title><media id="eip-idm490397104" display="block" alt="Insert alt text here">
+<video mime-type="video/mpeg" src="https://www.youtube.com/embed/7B_1uUV37x8?rel=0" autoplay="false" width="640" height="460"/>
+ </media>
+<caption>[video] Coding tips and suggestions for <term>SoundGen.vi</term>
+</caption></figure></section>
+
+<section id="sec25">
+<title>Part 3: Multi-Voice Composition</title>
+
+<para id="par26">Compose a simple piece of music using analog synthesis techniques of your choice. Better compositions will include variety, e.g., different envelope parameters at different times, multiple channels (chords), stereo, percussive sounds, and so on. Write a paragraph or two that describes your compositional technique. Better compositions are click-free, i.e., joining the notes together does not produce any pops or clicks.</para>
+
+<list id="list27" list-type="bulleted">
+<title> Hints: </title> 
+<item> You may wish to use a familiar melody (remember, you've got an equation that converts a note from the equal-tempered scale into frequency), or you may want to use a musical "experiment" based on an algorithm as the basis for your composition. </item>
+<item> Operate multiple instances of <term>SoundGen.vi</term> in parallel (each with a different instrument setting) and add their outputs together. </item>
+<item> Import multiple spreadsheets to define your note lists (use "File IO | Read Spreadsheet"). Spreadsheets are the easiest way to hand-edit the contents of arrays. </item>
+<item> Remember to normalize your finished output before saving it to a .wav file. Use <term>QuickScale</term> ("Signal Processing | Signal Operation | Quick Scale") for this purpose. </item>
+<item> View your finished composition as a waveform plot. Confirm that the envelope shapes make sense, that the waveform is symmetrical about the zero axis (it should not contain any constant offset), and that the waveform fits within the +/- 1 range. </item>
+
+</list>
+
+</section>
+
+<section id="sec28">
+<title>Alternative Part 3: Multi-Voice Composition Using MIDI File</title>
+
+<para id="par29">The overall objectives of this alternative Part 3 are the same as described above, but the technical approach is different.</para>
+
+<para id="par30"><media id="idp2257184" alt=""><image src="../../media/LabVIEW.png" mime-type="image/png"/></media> Go to <link document="m15053">MIDI JamSession</link> to learn all about a LabVIEW application VI of the same name that reads a standard MIDI file (.mid format) and renders it to an audio file (.wav format) using "instrument" subVIs of your own design. You have already done all of the work necessary to create your own instruments, and it is a simple matter to place them inside a standard subVI wrapper (or "Virtual Musical Instrument," VMI) that MIDI JamSession can use.</para>
+
+</section>
+
+</content>
+</document>

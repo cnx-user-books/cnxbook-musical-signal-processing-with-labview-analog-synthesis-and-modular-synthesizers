@@ -1,0 +1,206 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Analog Synthesis Modules</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m15442</md:content-id>
+  <md:title>Analog Synthesis Modules</md:title>
+  <md:abstract>Learn about analog synthesizer modules, the foundation for synthesizers based on analog electronics technology. While analog synthesis has largely been replaced by
+digital techniques, the concepts associated with analog modular synthesis (oscillators, amplifiers, envelope generators, and patches) still form the basis for many digital
+synthesis algorithms.</md:abstract>
+  <md:uuid>721fa83c-a60a-47bd-b70f-c216101efdf5</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+<section id="sec1">
+<title>Introduction</title>
+
+<para id="par2"><term>Analog synthesizers</term> dominated music synthesis technology throughout all but the last 15 years of the 20th century. Early synthesizers were based on vacuum tubes or other electro-mechanical devices, and transistor technology entered the music scene during the early 1960s. Analog synthesizers produce sound waveforms as <term>continuous</term> voltages. Oscillators produce basic waveforms such as sinusoids, square waves, and triangle waves, much like a function generator in the electronics laboratory. These waveforms are shaped by time-varying amplifiers to emulate the characteristics of physical instruments, e.g., loud at the beginning transient of a note, softer during the sustained portion of the note.</para>
+
+<para id="par3">You probably know that synthesizers defined many of the pop music styles of the 1970s. Watch (and listen!) to the screencast video in
+<link target-id="video-synthsounds"/> 
+ to learn more about some of the common synthesizer techniques. A real-time graphical signal analyzer is used to visualize the sounds so that you can better understand what you hear.</para>
+
+<figure id="video-synthsounds"><title><link url="https://youtu.be/K9BiBagR4ZI" window="new">https://youtu.be/K9BiBagR4ZI</link> (5:46)</title><media id="eip-idm239872624" display="block" alt="Spectrogram of synthesizer sounds">
+<video mime-type="video/mpeg" src="https://www.youtube.com/embed/K9BiBagR4ZI?rel=0" autoplay="false" width="640" height="460"/>
+ </media><caption>[video] Examples of analog synthesizer sounds, including visualization of waveform and frequency spectra
+</caption></figure><para id="par5">The history of electronic synthesizers is really fascinating. In particular, the following sites form an excellent starting point:</para>
+
+<list id="list6" list-type="bulleted"><item> <link url="http://120years.net/">120 Years of Electronic Music</link> -- Look for the entries under 1960 </item>
+<item> <link url="http://www.synthmuseum.com">SynthMuseum.com</link> </item>
+
+</list></section>
+
+<section id="sec7">
+<title>Analog Synthesizer Modules</title>
+
+<para id="par8">Everything about an analog synthesizer is analog! For example, a keyboard-based synthesizer uses a <term>control voltage (CV)</term> to change the frequency of the oscillator; the oscillator is therefore called a <term>voltage-controlled oscillator</term> or <term>VCO</term>. The time-varying gain of an amplifier is also controlled by a CV, so the amplifier is called a <term>voltage-controlled amplifier</term> or <term>VCA</term>. The VCO and VCA are two of many types of synthesizer <term>modules</term> that can be interconnected (or <term>patched</term> together) in many different ways.</para>
+
+<para id="par9">Take a look at the video in
+<link target-id="video-patches"/>
+ to find out why interconnected modules are called <term>patches</term>, and to learn how to put together a simple patch involving a VCO, VCA, <term>envelope generator</term>, and keyboard controller.</para>
+
+<figure id="video-patches"><title><link url="https://youtu.be/nPDtukB-MCU" window="new">https://youtu.be/nPDtukB-MCU</link> (5:45)</title><media id="eip-idm557448544" display="block" alt="Patch diagram with keyboard, VCO, VCA, and envelope generator">
+<video mime-type="video/mpeg" src="https://www.youtube.com/embed/nPDtukB-MCU?rel=0" autoplay="false" width="640" height="460"/>
+ </media>
+<caption>[video] Origins of the term "patch", and simple example of an analog synthesizer patch using a VCO, VCA, envelope generator, and keyboard
+</caption></figure><para id="par11">Analog synthesizer modules can be grouped into four categories: <term>sources</term>, <term>processors</term>, <term>envelope generators</term>, and <term>controllers</term>; each of these is discussed in detail in the following sections.</para>
+
+<section id="sec12">
+<title>Sources</title>
+
+<para id="par13">Signal sources include the <term>VCO</term> and the noise generator. View the video in
+<link target-id="video-sources"/>
+to learn more, then quiz yourself to check your understanding.</para>
+
+<figure id="video-sources"><title><link url="https://youtu.be/KSOiYIt1nBM" window="new">https://youtu.be/KSOiYIt1nBM</link> (4:24)</title><media id="eip-idm324864416" display="block" alt="Sine, triangle wave, and square wave VCO sources">
+<video mime-type="video/mpeg" src="https://www.youtube.com/embed/KSOiYIt1nBM?rel=0" autoplay="false" width="640" height="460"/>
+ </media>
+
+
+<caption>[video] VCO and noise generator signal sources
+</caption></figure><exercise id="exer15">
+<problem id="idm5483920">
+<para id="par16">The amplitude of a VCO's waveform can be adjusted (true or false).</para>
+</problem>
+<solution id="idm1966736">
+<para id="par17">False</para>
+</solution>
+</exercise>
+<exercise id="exer18">
+<problem id="idm7655712">
+<para id="par19">How does a VCO interpret its control voltage to produce a desired frequency?</para>
+</problem>
+<solution id="idp1418544">
+<para id="par20">One octave per volt</para>
+</solution>
+</exercise>
+<exercise id="exer21">
+<problem id="idm14696608">
+<para id="par22">Which VCO has the richest harmonic content?</para>
+</problem>
+<solution id="idm5380752">
+<para id="par23">Square wave has highest amplitude harmonics, but contains odd harmonics only;
+triangle wave has the most harmonics (even and odd)</para>
+</solution>
+</exercise>
+</section>
+
+<section id="sec24">
+<title>Processors</title>
+
+<para id="par25">Signal processors include the  (<term>VCA</term>) and the <term>voltage-controlled filter</term> (<term>VCF</term>). View the video in
+<link target-id="video-processors"/>
+to learn more, then quiz yourself to check your understanding.</para>
+
+<figure id="video-processors"><title><link url="https://youtu.be/Yl5Ta1C5-jA" window="new">https://youtu.be/Yl5Ta1C5-jA</link> (2:27)</title><media id="eip-idm1202424864" display="block" alt="VCA signal processor">
+<video mime-type="video/mpeg" src="https://www.youtube.com/embed/Yl5Ta1C5-jA?rel=0" autoplay="false" width="640" height="460"/>
+ </media>
+<caption>[video] VCA and VCF signal processors
+</caption></figure><exercise id="exer27">
+<problem id="idm7887104">
+<para id="par28">How does a VCA interpret its control voltage to produce a desired gain?</para>
+</problem>
+<solution id="idm5484832">
+<para id="par29">Zero volts mean zero gain, one volt mean unit gain</para>
+</solution>
+</exercise>
+<exercise id="exer30">
+<problem id="idm15826048">
+<para id="par31">What types of filter functions can be implemented by a VCF?</para>
+</problem>
+<solution id="idp2809200">
+<para id="par32">Lowpass, highpass, bandpass, etc.</para>
+</solution>
+</exercise>
+<exercise id="exer33">
+<problem id="idm1279824">
+<para id="par34">What VCF filter parameters can be adjusted by control voltages?</para>
+</problem>
+<solution id="idm1482448">
+<para id="par35">Corner (cutoff) frequency, bandwidth, resonance frequency</para>
+</solution>
+</exercise>
+</section>
+
+<section id="sec36">
+<title>Envelope Generators</title>
+
+<para id="par37">An <term>envelope generator</term> creates a <term>CV</term> to operate other voltage-controlled modules such as the VCA and VCF. View the video in
+<link target-id="video-envgens"/>
+to learn more about envelope generators, in particular why they are usually called an <term>ADSR</term>.</para>
+
+<figure id="video-envgens"><title><link url="https://youtu.be/3SzyL9pXEn8" window="new">https://youtu.be/3SzyL9pXEn8</link> (6:06)</title><media id="eip-idm679611952" display="block" alt="Attack/decay and gate waveforms">
+<video mime-type="video/mpeg" src="https://www.youtube.com/embed/3SzyL9pXEn8?rel=0" autoplay="false" width="640" height="460"/>
+ </media>
+
+<caption>[video] Envelope generators, especially the ADSR-style envelope generator
+</caption></figure><exercise id="exer39">
+<problem id="idm15062064">
+<para id="par40">What is the normal (un-triggered) output of an envelope generator?</para>
+</problem>
+<solution id="idm3048288">
+<para id="par41">Zero</para>
+</solution>
+</exercise>
+<exercise id="exer42">
+<problem id="idm15377344">
+<para id="par43">What does the acronym <term>ADSR</term> mean?</para>
+</problem>
+<solution id="idm5809536">
+<para id="par44">Attack - Decay - Sustain - Release</para>
+</solution>
+</exercise>
+<exercise id="exer45">
+<problem id="idm2270608">
+<para id="par46">Why is the exponential shape used for envelope generators?</para>
+</problem>
+<solution id="idm4639664">
+<para id="par47">Easy to produce with RC-networks; matches behavior of real instruments</para>
+</solution>
+</exercise>
+</section>
+
+<section id="sec48">
+<title>Controllers</title>
+
+<para id="par49">A <term>controller</term> creates a control voltage (CV) to operate other voltage-controlled modules such as the VCA and VCF. An <term>interactive controller</term> offers the musician direct and immediate control of the sound, such as a keyboard, knob, or slider. A <term>programmed controller</term> generates a control voltage in some pre-defined way, such as a <term>low-frequency oscillator</term> (<term>LFO</term>) to produce vibrato, and a sequencer to produce a repeating pattern of control voltages for the VCO. View the video in
+<link target-id="video-controllers"/>
+to learn more, and then quiz yourself to check your understanding.</para>
+
+<figure id="video-controllers"><title><link url="https://youtu.be/nRXe2kq-HM4" window="new">https://youtu.be/nRXe2kq-HM4</link> (4:51)</title><media id="eip-idm1180019552" display="block" alt="Keyboard control and gate waveforms">
+    <video mime-type="video/mpeg" src="https://www.youtube.com/embed/nRXe2kq-HM4?rel=0" autoplay="false" width="640" height="460"/>
+ </media>
+<caption>[video] Controllers including keyboard, knobs and sliders, low-frequency oscillator (LFO), and sequencer 
+</caption></figure><exercise id="exer51">
+<problem id="idm6564080">
+<para id="par52">Which types of output voltages does a keyboard controller produce?</para>
+</problem>
+<solution id="idm8263440">
+<para id="par53">A control voltage to control the frequency of a VCO, and a gate voltage to control an envelope generator</para>
+</solution>
+</exercise>
+<exercise id="exer54">
+<problem id="idm185616">
+<para id="par55">What is the <term>portamento</term> effect, and how is it produced?</para>
+</problem>
+<solution id="idm5772192">
+<para id="par56">A <term>portamento</term> is a continuous frequency transition from one note to the next; instead of producing a step-change in the control voltage connected to the VCO, the keyboard produces a continuously-varying voltage from the starting note to the ending note </para>
+</solution>
+</exercise>
+<exercise id="exer57">
+<problem id="idm6082768">
+<para id="par58">Which device would a keyboardist use to automatically play a repeating pattern of notes?</para>
+</problem>
+<solution id="idm8523232">
+<para id="par59">Sequencer</para>
+</solution>
+</exercise>
+</section>
+
+</section>
+
+</content>
+</document>
