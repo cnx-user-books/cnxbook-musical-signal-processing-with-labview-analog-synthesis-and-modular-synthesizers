@@ -1,12 +1,13 @@
-<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+<?xml version="1.0"?>
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en" authors="Ed Doering">
   <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
     <md:content-id>col10480</md:content-id>
     <md:title>Musical Signal Processing with LabVIEW -- Analog Synthesis and Modular Synthesizers</md:title>
     <md:language>en</md:language>
     <md:license url="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution License</md:license>
     <md:uuid>e9467677-86fb-4bf7-ba38-19b78c989bc8</md:uuid>
-<md:slug>musical-signal-processing-with-labview-analog-synthesis-and-modular-synthesizers</md:slug>
-</metadata>
+    <md:slug>musical-signal-processing-with-labview-analog-synthesis-and-modular-synthesizers</md:slug>
+  </metadata>
   <col:content>
     <col:module document="m15442"/>
     <col:module document="m15443"/>
